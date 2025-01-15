@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e0e0e0;
+        }
+
+        .login-container {
+            background-color: #ffffff;
+            padding: 50px 40px ;
+            border-radius: 10px;
+            box-shadow: 0px 100px 250px rgba(0, 0, 0, 0.723);
+            width: 400px;
+        }
+
+        .login-form h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .input-group {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: none;
+            border-bottom: 1px solid black;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #4CAF50;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0, 150, 0, 0.2);
+        }
+
+        .input-group label {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            padding: 0 5px;
+            background-color: #fff;
+            color: #999;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .input-group input:focus + label,
+        .input-group input:valid + label {
+            top: -3px;
+            font-size: 12px;
+            color: #4CAF50;
+        }
+
+        .eye-icon {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #999;
+            font-size: 22px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0f5212b0;
+        }
+
+
+        .login-container {
+            margin-top: 20px;
+        }
+
+       
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <form class="login-form" action="" method="post">
+            {% csrf_token %}
+
+            <h2>Login</h2>
+
+            <div class="input-group">
+                <input type="text" id="username" name="username"  required>
+                <label for="username">Username</label>
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="password" name="password"  required>
+                <label for="password">Password</label>
+                <span id="togglePassword" class="eye-icon material-icons" onclick="togglePasswordVisibility()">visibility_off</span>
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const togglePassword = document.getElementById('togglePassword');
+
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+
+            togglePassword.textContent = type === 'password' ? 'visibility_off' : 'visibility';
+
+            // Auto-hide the password after 2 seconds
+            if (type === 'text') {
+                setTimeout(() => {
+                    passwordInput.setAttribute('type', 'password');
+                    togglePassword.textContent = 'visibility_off';
+                }, 1000);
+            }
+        }
+    </script>
+</body>
+</html>
