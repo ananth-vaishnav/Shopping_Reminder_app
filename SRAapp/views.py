@@ -1,3 +1,4 @@
+from urllib import request
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
@@ -8,7 +9,8 @@ from .models import *
 
 class viewshop(View):
     def get(self, request):
-        return render(request, 'Administrator/viewshop.html')
+         d = Shop.objects.all()
+         return render(request, 'Administrator/viewshop.html',{'val':d})
     
 class Login(View):
     def get(self, request):
