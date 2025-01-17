@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
 
-from .models import LoginModel
+from .models import *
 
 # Create your views here.
 
@@ -27,7 +27,8 @@ class shopregistration(View):
     
 class viewuser(View):
     def get(self, request):
-        return render(request, 'Administrator/viewuser.html')
+        c = User.objects.all()
+        return render(request, 'Administrator/viewuser.html',{'val':c})
 
 class viewfeedback(View):
     def get(self, request):
