@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models # type: ignore
 
 # Create your models here.
 
@@ -20,6 +20,7 @@ class Shop(models.Model):
     email = models.CharField(max_length=100, blank=True, null=True)
     location = models.CharField(max_length=100, blank=True, null=True)
     number=models.IntegerField(null=True,blank=True)
+    category=models.CharField(max_length=100, blank=True, null=True)
 
 class Feedback(models.Model):
     Feedback = models.CharField(max_length=100, blank=True, null=True)
